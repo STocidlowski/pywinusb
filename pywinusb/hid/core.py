@@ -12,6 +12,7 @@ import sys
 import ctypes
 import threading
 import collections
+from collections.abc import Callable
 if sys.version_info >= (3,):
     import winreg
 else:
@@ -791,7 +792,7 @@ class HidDevice(HidDeviceBaseClass):
         if report_id == None or not handler_function:
             # do not add handler
             return False
-        assert(isinstance(handler_function, collections.Callable)) # must be a function
+        assert(isinstance(handler_function, Callable)) # must be a function
         # get dictionary for full usages
         top_map_handler = self.__evt_handlers.get(full_usage_id, dict())
         event_handler_set = top_map_handler.get(event_kind, dict())
